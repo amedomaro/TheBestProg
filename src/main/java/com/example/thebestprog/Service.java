@@ -33,7 +33,7 @@ public class Service {
         for (double num : list) {
             stDev += Math.pow(num - average, 2);
         }
-        double standardDeviation = Math.sqrt(stDev / (double) list.size());
+        double standardDeviation = Math.sqrt(stDev / (double) (list.size() -1));
 
         List<Double> answer = new ArrayList<>(); // стандартизированное значение
         for (double i : list) {
@@ -41,6 +41,13 @@ public class Service {
             else answer.add(0.0);
         }
         return answer;
+    }
 
+    public void MinMaxAve(String name, List<Double> list){
+        double min = list.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
+        double max = list.stream().mapToDouble(Double::doubleValue).max().getAsDouble();
+        double aver = list.stream().mapToDouble(Number::doubleValue).average().getAsDouble();
+
+        System.out.printf("%s - min = %f, max = %f, aver = %f %n", name, min, max, aver);
     }
 }
